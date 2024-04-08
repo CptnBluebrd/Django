@@ -1,13 +1,13 @@
 {% extends "articles/base.html" %}
 {% block content %}
-    <h1>Mindforest Artikelen!</h1>
-        <p1>Hier komen diverse artikelen geschreven door mij.</p1>
+    <h1 class="mb-3">Artikelen van {{ view.kwargs.username }} !</h1>
+        <p1>Geschreven artikelen: ({{ page_obj.paginator.count }}) </p1>
     {% for post in posts %}
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
             <div class="media-body">
             <div class="article-metadata">
-            <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
             <small class="text-muted">{{ post.date_posted|date:"Y M, d" }}</small>
             </div>
             <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
